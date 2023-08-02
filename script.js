@@ -1,8 +1,17 @@
-playRound();
+//playRound();
 
-function playRound(){
-    displayWinner(getWinner(getPlayerChoice(), getComputerChoice()));
+function playRound(playerSelection){
+    console.log(playerSelection);
+    displayWinner(getWinner(getPlayerChoice(playerSelection), getComputerChoice()));
 }
+
+const buttons = document.querySelectorAll('div > button');
+console.log(buttons);
+buttons.forEach((btn) => {
+    btn.addEventListener('click', (e)=>{
+        playRound(Number(e.target.attributes[0].value));
+    });
+});1
 
 function displayWinner(winCode){
     if(winCode === 0){
@@ -39,9 +48,9 @@ function getComputerChoice(){
     return getChoiceFromSelectionCode(randomChoice);
 }
 
-function getPlayerChoice(){
-    const playerChoice = Number((window.prompt("Please type in your selection: 1 for rock, 2 for paper, 3 for scissors")).trim());
-    return getChoiceFromSelectionCode(playerChoice, "Player");
+function getPlayerChoice(playerSelection){
+    //const playerChoice = Number((window.prompt("Please type in your selection: 1 for rock, 2 for paper, 3 for scissors")).trim());
+    return getChoiceFromSelectionCode(playerSelection, "Player");
 }
 
 function getChoiceFromSelectionCode(cd, who="Computer"){
