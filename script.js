@@ -2,7 +2,19 @@
 
 function playRound(playerSelection){
     console.log(playerSelection);
-    displayWinner(getWinner(getPlayerChoice(playerSelection), getComputerChoice()));
+    const winCd = getWinner(getPlayerChoice(playerSelection), getComputerChoice());
+    updateScoreBoard(winCd);
+    //check if someone won the game
+    if(didSomeoneWin()) displayFinalMessage();
+}
+
+function displayFinalMessage(){
+    yourScore = 0;
+    compScore =0;
+    yourScoreText.textContent = yourScore;
+    compScoreText.textContent = compScore;
+    const modal = document.querySelector('#final-msg');
+    modal.style.display = 'block';
 }
 
 const buttons = document.querySelectorAll('div > button');
@@ -11,7 +23,29 @@ buttons.forEach((btn) => {
     btn.addEventListener('click', (e)=>{
         playRound(Number(e.target.attributes[0].value));
     });
-});1
+});
+
+let yourScore = 0, compScore = 0;
+const yourScoreText = document.querySelector('#yourScore');
+const compScoreText = document.querySelector('#compScore');
+yourScoreText.textContent = yourScore;
+compScoreText.textContent = compScore;
+
+function updateScoreBoard(winCode){
+    if(winCode === 0){
+        return;
+    }else if(winCode === 1){
+        yourScore++;
+        yourScoreText.textContent = yourScore;
+    }else{
+        compScore++;
+        compScoreText.textContent = compScore;
+    }
+}
+
+function didSomeoneWin(){
+    return (yourScore >= 5 || compScore >= 5);
+}
 
 function displayWinner(winCode){
     if(winCode === 0){

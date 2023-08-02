@@ -16,16 +16,19 @@
         </div>
         <div class="score-container">
             <div class="player score">
-                <p class="name">you</p><p>2</p>
+                <p class="name">you</p><p id="yourScore">2</p>
             </div>
             <div class="computer score">
-                <p class="name">computer</p><p>1</p>
+                <p class="name">computer</p><p id="compScore">1</p>
             </div>
         </div>
         <div class="btn-container">
             <button data-rps-code="1">Rock</button>
             <button data-rps-code="2">Paper</button>
             <button data-rps-code="3">Scissors</button>
+        </div>
+        <div id="final-msg" style="display: none;">
+            <h1>GAME OVER</h1>
         </div>
     </div>
     <script src="./script.js"></script>
